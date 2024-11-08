@@ -8,6 +8,7 @@
   width: 500px;
   perspective: 1500px;
   background: transparent;
+  border-radius: var(--border-radius);
 }
 
 .status__section::after {
@@ -20,6 +21,7 @@
   background-color: var(--main-color);
   border-radius: 50%;
   opacity: 0.5;
+
 }
 
 .status__section.blink::after {
@@ -28,7 +30,8 @@
 }
 
 .status__section.offline::after {
-  background-color: crimson;
+  background-color: goldenrod;
+  opacity: 1;
   transition: .2s;
 }
 
@@ -48,6 +51,7 @@
 
 .status__section .status__game-info {
   display: none;
+  padding: 0 5px;
 }
 
 .status__section .status__progres {
@@ -75,7 +79,9 @@
   display: flex;
 }
 
-
+.show-ticker .magic-line__container {
+  display: flex;
+}
 
 .status__header-buttons {
   position: absolute;
@@ -101,6 +107,7 @@
 }
 
 .status__container {
+  /* --bg-image: url(https://media.retroachievements.org/Images/005200.png); */
   position: relative;
   background: var(--main-color);
   height: 100%;
@@ -113,8 +120,17 @@
   transition: transform 1s;
 }
 
+.status__container.game-bg {
+  background-image: var(--bg-image);
+  background-blend-mode: overlay;
+  background-size: 120%;
+  background-repeat: no-repeat;
+  background-position: center left;
+  image-rendering: pixelated;
+}
+
 .timer-timeout .status__container {
-  background: rgb(134, 0, 27);
+  filter: hue-rotate(90deg);
 }
 
 .status__container.show-back {
@@ -213,16 +229,16 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 5px;
+  /* gap: 5px; */
   justify-content: space-between;
   overflow: hidden;
   border-radius: var(--border-radius);
-  padding-bottom: 5px;
+  /* padding-bottom: 5px; */
 }
 
 .status__user-status::before,
 .status__user-status::after {
-  content: '';
+  /* content: ''; */
   position: absolute;
   bottom: 2px;
   left: 0;
@@ -254,6 +270,9 @@
   border-radius: var(--border-radius);
 }
 
+.status__back-side .status__text-block {
+  justify-content: space-evenly;
+}
 
 .new-game-info .status__back-side {
   gap: 5px;
@@ -284,12 +303,18 @@
   animation: update-achiv-anim 0.5s linear forwards;
 }
 
+.new-award .status__back-side.beaten::after,
+.new-award .status__back-side.beaten-softcore::after {
+  mask-image: url(../assets/img/medal.svg);
+}
+
 .new-achiv .status__back-side::after {
   mask-image: url(../assets/img/military_medal.svg);
   animation: update-achiv-anim 0.5s linear forwards;
 }
 
 .status__back-side.mastered::after,
+.status__back-side.beaten::after,
 .status__back-side.hardcore::after {
   --color: gold;
 }
@@ -342,8 +367,13 @@
 }
 
 .status__achiv-points {
-  font-size: 1.6em;
+  font-size: 1.5em;
   font-weight: 600;
+}
+
+.new-game-info .status__back-side .status__progres-description,
+.new-award .status__back-side .status__progres-description {
+  display: none;
 }
 
 .new-game-info .status__achiv-points {
@@ -369,11 +399,10 @@
 /**---------------- BACK SIDE ------------- */
 .status__preview-container {
   position: relative;
-  /* max-height: 75%; */
   height: 100%;
   aspect-ratio: 1;
-  z-index: 1;
-  box-shadow: 0 1px 5px 2px black;
+  z-index: 2;
+  box-shadow: 0 1px 10px 3px black;
 }
 
 .status__preview-container::before {
@@ -389,11 +418,10 @@
   height: 100%;
   aspect-ratio: 1;
   object-fit: fill;
-  border-radius: 5px 0 0 0;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
   overflow: hidden;
   pointer-events: none;
   z-index: 2;
-  filter: contrast(1);
 }
 
 .status__preview-container::after {
@@ -410,11 +438,16 @@
   background-position: center;
 }
 
+.stats .status__back-side .status__preview-container::after {
+  background-image: url(../assets/img/avatar-border.webp);
+}
+
+.status__back-side.mastered .status__preview-container::after,
 .status__back-side.hardcore .status__preview-container::after {
   background-image: url(../assets/img/border-8.webp);
 }
 
-.update_status__backback-side .status__preview-container::after {
+.status__back-side .status__preview-container::after {
   background-image: url(../assets/img/game-border-5.webp);
 }
 
@@ -431,7 +464,7 @@
 
 
 
-.progress-percent {
+.status__big-text {
   --animation-duration: 1s;
   position: absolute;
   right: 20px;
@@ -442,18 +475,18 @@
   word-wrap: none;
   font-weight: bold;
   color: var(--font-color);
-  opacity: 0.2;
+  opacity: 0.4;
   padding-bottom: 6px;
   pointer-events: none;
   z-index: 2;
   transition: color var(--animation-duration);
 }
 
-.progress-percent.hidden {
+.status__big-text.hidden {
   visibility: hidden;
 }
 
-.progress-percent.hide {
+.status__big-text.hide {
   color: var(--main-color);
 }
 
@@ -470,7 +503,7 @@
   display: grid;
   place-items: center;
   box-shadow: 0 0 5px 1px var(--secondary-color);
-  opacity: 0;
+  opacity: 1;
   transition: transform 200ms, opacity 200ms;
   z-index: 10;
 }
@@ -481,6 +514,10 @@
 
 .status__watch-button:hover {
   transform: translate(-50%, -50%) scale(1.1);
+}
+
+.status__watch-button.active {
+  opacity: 0;
 }
 
 .status__watch-button:active {
@@ -525,7 +562,7 @@
   font-size: 1em;
   font-weight: bold;
   padding: 0 .2em 2px;
-  border-radius: 0 5px 0 0;
+  border-radius: 0 var(--border-radius) 0 var(--border-radius);
   line-height: 1em;
 }
 
@@ -542,6 +579,7 @@
   align-items: center;
   overflow: scroll;
   font-size: inherit;
+  padding: 0.2em 0.2em 0;
 }
 
 .status__game-title {
@@ -575,13 +613,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   height: 100%;
   flex: 1;
   overflow: hidden;
   z-index: 1;
   font-size: inherit;
-  padding: 0.2rem;
 }
 
 
@@ -630,13 +667,16 @@
 .status__progres {
   --progress: 2;
   width: 100%;
-  height: 3em;
   color: var(--font-color);
   display: flex;
   flex-direction: column;
   align-items: start;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  flex: 1;
   font-size: inherit;
+  row-gap: .25rem;
+  overflow: visible;
+  padding: 0 5px;
 }
 
 .status__progres-description {
@@ -650,27 +690,20 @@
   --color: var(--font-color);
   --width: calc(100% / 5);
   width: 100%;
-  height: fit-content;
   display: flex;
   align-items: end;
   justify-content: start;
   font-size: inherit;
-  padding: 0 0.25rem;
+  padding: 0 0.2em;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
 }
 
 .progres-step.softcore {
   --color: var(--selection-color);
 }
 
-.progres-step__win:has(.softcore) {
-  --color: var(--selection-color);
-}
-
 .progres-step.hardcore {
-  --color: var(--accent-color);
-}
-
-.progres-step__win:has(.hardcore) {
   --color: var(--accent-color);
 }
 
@@ -682,29 +715,29 @@
   height: 1.5em;
   background-color: transparent;
   display: flex;
-  justify-content: end;
+  justify-content: start;
   font-size: inherit;
   align-items: center;
+  min-width: 1.5em;
 }
 
-.progres-step:first-child,
+/* .progres-step:first-child, */
 .progres-step__win:first-child {
   width: auto;
 }
 
-.progres-step:first-child {
+/* .progres-step:first-child {
   width: auto;
-}
+} */
 
 .progres-point {
   position: relative;
-  background-color: var(--main-color);
+  /* background-color: var(--main-color); */
   height: 1.2em;
-  max-height: 1.8rem;
+  /* max-height: 1.8rem; */
   aspect-ratio: 1;
   border-radius: 50%;
   border: 2px solid var(--color);
-
   display: grid;
   place-items: center;
   z-index: 2;
@@ -713,7 +746,6 @@
 
 .progres-point.win {
   border: none;
-  background-color: var(--main-color);
   width: 0.75rem;
 }
 
@@ -731,24 +763,20 @@
   background-color: var(--color);
 }
 
-.progres-step:not(:first-child)::before,
-.progres-step__win:not(:first-child)::before {
+.progres-step::after {
   content: "";
   position: absolute;
   transform: translateY(-50%);
   top: 50%;
-  left: 0;
   right: 0;
-  width: 100%;
+  width: calc(100% - 1.2em);
   height: 2px;
   background-color: var(--color);
   z-index: 1;
 }
 
-.progres-step__win {
-  display: flex;
-  align-self: center;
-  justify-content: end;
+.progres-step:last-child::after {
+  display: none;
 }
 
 .progres-step .progres-point::before {
@@ -772,7 +800,7 @@
   left: 50%;
   height: 30%;
   aspect-ratio: 1;
-  height: 120%;
+  height: 110%;
   background-color: var(--font-color);
   mask-image: url(../assets/img/flag.svg);
   mask-repeat: no-repeat;
@@ -799,15 +827,19 @@
   background-color: gold;
 }
 
+.progres-step.focus {
+  scroll-snap-align: center;
+}
 
 .progres-point.focus::after {
+  /* display: none; */
   content: '';
   position: absolute;
-  height: 160%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 2px dashed var(--font-color);
-  animation: rotate-animation 10s linear infinite;
+  width: 1.2em;
+  height: 2px;
+  background: linear-gradient(to left, transparent, var(--font-color), transparent);
+  bottom: -5px;
+
 }
 
 @keyframes rotate-animation {
@@ -816,7 +848,34 @@
   }
 }
 
-.current-level.progres-point:not(.win) {
+/* .current-level.progres-point:not(.win) {
   border-radius: 50%;
   border: 2px solid greenyellow;
+} */
+
+.magic-line__container {
+  font-size: inherit;
+  /* position: absolute; */
+  bottom: 0;
+  height: 1em;
+  background: linear-gradient(to right,
+      #ee0979,
+      #ff6a00);
+  overflow-x: scroll;
+  color: black;
+  width: 100%;
+  display: none;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  justify-self: end;
+  z-index: 0;
+  border-radius: 0 0 var(--border-radius) 0;
+}
+
+.infinite-line {
+  text-wrap: nowrap;
+  white-space: nowrap;
+  font-size: 0.9em;
+
 }

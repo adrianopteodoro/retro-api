@@ -37,6 +37,12 @@
     <div class="game-card-description">
     </div>
   </div>
+  <div class="game-card__back-side">
+    <div class="game-info__progression">
+      <ul class="game-info__progression-list">
+      </ul>
+    </div>
+  </div>
   <div class="resizer" id="game-card-resizer"></div>
 </section><section id="target_section" class="target_section section ">
   <div class="header-container target-header_container">
@@ -53,7 +59,7 @@
 
   </div>
 
-  <ul class="target-container content-container"></ul>
+  <ul class="target-container content-container flex-main-list"></ul>
   <div class="target-comments__container hidden" onmousedown="event.stopPropagation()">
     <div class="target-comments__header">
       Cheevo comments
@@ -72,14 +78,15 @@
         </div>
 
         <h2 class="widget-header-text">Progression</h2>
+        <button class="header-button header-icon tweak-button tweak-icon"
+            onclick="ui.settings.openSettings(ui.progression.contextMenuItems)">
+        </button>
         <div class="header-button header-icon close-icon" onclick="ui.progression.close()">
         </div>
     </div>
-    <div class="progression_container">
-        <ul class="horizon_list not-earned" id="not-earned_progression-list">
-
+    <div class="progression__container">
+        <ul class="progression__list">
         </ul>
-        <ul class="horizon_list earned" id="earned_progression-list"></ul>
     </div>
     <div class="resizer" id="progression-resizer"></div>
 </section><section id="side_panel" class="buttons-block gradient-animation expanded">
@@ -95,7 +102,22 @@
                 <input type="checkbox" onchange="ui.statusPanel.VISIBLE = this.checked" name="open-status-button"
                     id="open-status-button">
                 </input>
-                <label class="side-panel_input" data-title="statusbar widget " for="open-status-button"><svg
+                <label class="side-panel_input" data-title="statusbar widget " for="open-status-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                        <path
+                            d="M300-840q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 5-.5 10t-.5 10h-80q1-5 1-10v-10q0-60-40-100t-100-40q-47 0-87 26.5T518-666h-76q-15-41-55-67.5T300-760q-60 0-100 40t-40 100v10q0 5 1 10H81q0-5-.5-10t-.5-10q0-94 63-157t157-63Zm-88 480h112q32 31 70 67t86 79q48-43 86-79t70-67h113q-38 42-90 91T538-158l-58 52-58-52q-69-62-120.5-111T212-360Zm230 40q13 0 22.5-7.5T478-347l54-163 35 52q5 8 14 13t19 5h320v-80H623l-69-102q-6-9-15.5-13.5T518-640q-13 0-22.5 7.5T482-613l-54 162-34-51q-5-8-14-13t-19-5H40v80h297l69 102q6 9 15.5 13.5T442-320Zm38-167Z" />
+                    </svg>
+                </label>
+
+
+
+            </div>
+            <div class="setting-radio-group">
+
+                <input type="checkbox" onchange="ui.status.VISIBLE = this.checked" name="open-statusV2-button"
+                    id="open-statusV2-button">
+                </input>
+                <label class="side-panel_input" data-title="status widget " for="open-statusV2-button"><svg
                         xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                         <path
                             d="M300-840q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 5-.5 10t-.5 10h-80q1-5 1-10v-10q0-60-40-100t-100-40q-47 0-87 26.5T518-666h-76q-15-41-55-67.5T300-760q-60 0-100 40t-40 100v10q0 5 1 10H81q0-5-.5-10t-.5-10q0-94 63-157t157-63Zm-88 480h112q32 31 70 67t86 79q48-43 86-79t70-67h113q-38 42-90 91T538-158l-58 52-58-52q-69-62-120.5-111T212-360Zm230 40q13 0 22.5-7.5T478-347l54-163 35 52q5 8 14 13t19 5h320v-80H623l-69-102q-6-9-15.5-13.5T518-640q-13 0-22.5 7.5T482-613l-54 162-34-51q-5-8-14-13t-19-5H40v80h297l69 102q6 9 15.5 13.5T442-320Zm38-167Z" />
@@ -258,7 +280,8 @@
       <div class="status__preview-container">
         <img class="status__game-preview" id="game-preview" src="./assets/img/icon.png" alt=" " />
         <p class="status__retro-ratio">2.3</p>
-        <button id="watching-button" class="status__watch-button checked" title="autoupdate achievements"></button>
+        <button id="watching-button" class="status__watch-button checked"
+          data-title="start/stop autoupdate achievements progression"></button>
       </div>
       </button>
       <div class="status__text-block status__main-information">
@@ -269,6 +292,7 @@
           <p id="game-platform" class="status__game-platform status__text">Console</p>
           <div id="rich-presence" class="status__text rich-presence_text">Waiting...</div>
         </div>
+
         <div class="status__progres" id="status_progression">
           <div class="status__progres-description">Description</div>
           <div class="status__progres-container">
@@ -280,31 +304,39 @@
             </div>
           </div>
         </div>
+
+        <div id="magic-line" class="magic-line__container">
+
+        </div>
       </div>
       <div class="status__background"></div>
-      <div class="status__progress-bar" id="status-progress-bar"></div>
-      <div class="status__progress-bar_delta-values hidden" id="status_progress-bar-delta"></div>
-      <div class="progress-percent progress_points-percent" id="status-progress-text">0%</div>
+      <!-- <div class="status__progress-bar" id="status-progress-bar"></div>
+      <div class="status__progress-bar_delta-values hidden" id="status_progress-bar-delta"></div> -->
+
+      <div class="status__big-text" id="status-progress-text"></div>
 
     </div>
-    <div class="status__back-side card-3d">
+    <div class="status__back-side card-3d hardcore">
       <div class="status__preview-container">
         <img class="status__game-preview" id="update_achiv-preview"
-          src="https://media.retroachievements.org/Badge/276671.png" alt=" " />
+          src="https://media.retroachievements.org/Badge/55561.png" alt=" ">
       </div>
       <div class="status__text-block show-difficult">
         <div class="status__achiv-header">
-          <a id="update_achiv-title" target="_blank" class="status__text" href="">Clear Screen 1
-            <p class="status__difficult-badge difficult-badge__easy">easy</p>
+          <a id="update_achiv-title" target="_blank" class="status__text" href="">Kawaiivania
+            <p class="badge difficult-badge__easy">easy</p>
           </a>
         </div>
-        <p id="update_achiv-earned-points" class="status__text status__achiv-points">
-          +5HP +10RP TOP15%
-        </p>
+        <p id="update_achiv-description" class="status__text status__progres-description">Reach the end of Stage 5
+          without
+          using charged attacks</p>
+        <div id="update_achiv-earned-points" class="status__text status__achiv-points">
+          <p class="badge difficult-badge__pro">+5HP </p>
+          <p class="badge difficult-badge__pro">+5RP </p>
+          <p class="badge difficult-badge__pro">TOP58%</p>
+        </div>
       </div>
-      <div class="status_glass-effect"></div>
-
-
+      <div class="status_glass-effect update"></div>
     </div>
 
   </div>
@@ -530,6 +562,93 @@
         </li> -->
     </ul>
     <div class="resizer" id="stats-resizer"></div>
+</section><section class="section rp__section" id="rp__section">
+    <div class="rp__game-container">
+        <div class="rp__preview-container">
+            <img class="rp__game-image" src="https://media.retroachievements.org/Images/065134.png" alt="" srcset="">
+            <button class="status__watch-button" id="rp__watch-button"></button>
+        </div>
+        <div class="rp__game-info">
+            <a class="rp__game-title" target="_blank">Lorem ipsum dolor </a>
+            <div class="rp__game-info-grid">
+
+                <p class="rp__game-platform">NES/Famicom</p>
+                <div class="rp__game-time">01:23:13</div>
+                <div class="icons-row-list rp__game-icons"></div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="rp__progression-container">
+        <h3 class="rp__progression-target">Beet the game</h3>
+        <!-- <p class="rp-progression-description">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, ipsam?
+        </p> -->
+        <div class="rp__progression-points">
+            <div class="rp__progression-point earned"></div>
+            <div class="rp__progression-point earned"></div>
+            <div class="rp__progression-point earned"></div>
+            <div class="rp__progression-point"></div>
+            <div class="rp__progression-point"></div>
+            <div class="rp__progression-point"></div>
+            <div class="rp__progression-point"></div>
+            <div class="rp__progression-point"></div>
+            <div class="rp__progression-point"></div>
+            <div class="rp__progression-point"></div>
+            <div class="rp__progression-point"></div>
+            <div class="rp__progression-point"></div>
+            <div class="rp__progression-point"></div>
+            <div class="rp__win-points">
+                <div class="rp__progression-point win earned"></div>
+                <div class="rp__progression-point win"></div>
+            </div>
+        </div>
+    </div>
+    <div class="rp__progressbar-container">
+        <div class="rp__progressbar-header">
+            <div class="rp__progressbar-title">
+
+            </div>
+            <ul class="rp__last-cheevos">
+                <li class="last-cheevo"><img class="last-cheevo__img"
+                        src="https://media.retroachievements.org/Badge/02449.png" alt=""></li>
+                <li class="last-cheevo"><img class="last-cheevo__img"
+                        src="https://media.retroachievements.org/Badge/02449.png" alt=""></li>
+                <li class="last-cheevo"><img class="last-cheevo__img"
+                        src="https://media.retroachievements.org/Badge/02449.png" alt=""></li>
+                <li class="last-cheevo"><img class="last-cheevo__img"
+                        src="https://media.retroachievements.org/Badge/02449.png" alt=""></li>
+                <li class="last-cheevo"><img class="last-cheevo__img"
+                        src="https://media.retroachievements.org/Badge/02449.png" alt=""></li>
+                <li class="last-cheevo"><img class="last-cheevo__img"
+                        src="https://media.retroachievements.org/Badge/02449.png" alt=""></li>
+                <!-- <li class="last-cheevo digit">
+                    190
+                </li> -->
+            </ul>
+        </div>
+        <div class="rp__progressbar-total">
+            <div class="rp__progressbar-value"></div>
+        </div>
+    </div>
+    <div class="rp__ticker">
+    </div>
+    <ul class="rp__target-cheevos flex-main-list ">
+        <li class="target-achiv">
+            <div class="target-cheevo__preview-container">
+                <img class="target-cheevo__preview" src="https://media.retroachievements.org/Badge/02449.png" alt=""
+                    srcset="">
+            </div>
+            <div class="target-cheevo__description">
+                <h2 class="cheevo__header">Lorem ipsum dolor sit amet.</h2>
+                <div class="cheevo__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quis
+                    voluptates harum asperiores! Dic</div>
+            </div>
+        </li>
+
+    </ul>
+    <div class="resizer"></div>
 </section>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>

@@ -86,5 +86,13 @@
     "mainNote": "メインノート",
     "gameNote": "ゲームノート",
     "showLevel": "レベルを表示",
-    "showUpdateBlink": "Show Update Blink"
+    "showUpdateBlink": "アップデートブリンクを表示",
+    "showGenreBadges": "ジャンルバッジを表示",
+    "level_test": "Level (Test)",
+    "exportCompletion": "エクスポート完了の進捗",
+    "exportWantToPlay": "「やりたいゲーム」のエクスポート",
+    "exportSettings": "エクスポート設定",
+    "importSettings": "インポート設定",
+    "hardcoreMode": "ハードコアモード",
+    "showLoadAnimation": "ロードアニメーションを表示"
 }

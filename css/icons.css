@@ -106,9 +106,15 @@
     aspect-ratio: 1;
     background-color: var(--font-color);
     mask-size: contain;
-    mask-position: center bottom;
+    mask-position: center;
     mask-repeat: no-repeat;
     transition: background-color .2s;
+}
+
+.signed-icon {
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem
 }
 
 .icon-button,
@@ -149,9 +155,17 @@
     justify-self: center;
 }
 
+.q-icon {
+    mask-image: url(../assets/img/help.svg);
+}
+
 .difficult-icon {
     mask-image: url(../assets/img/award-mastered.svg);
     scale: 1.05;
+}
+
+.info-icon {
+    mask-image: url(../assets/img/info.svg);
 }
 
 .win_condition {
@@ -178,6 +192,22 @@
 
 .rarity-icon {
     mask-image: url(../assets/img/diamond.svg);
+}
+
+.ps-rarity-icon {
+    mask-image: url(../assets/img/rarity-1.svg);
+}
+
+.ps-rarity-icon.rare {
+    mask-image: url(../assets/img/rarity-2.svg);
+}
+
+.ps-rarity-icon.very-rare {
+    mask-image: url(../assets/img/rarity-3.svg);
+}
+
+.ps-rarity-icon.ultra-rare {
+    mask-image: url(../assets/img/rarity-4.svg);
 }
 
 .checked>.favourite_icon {
@@ -354,7 +384,7 @@
 .difficult-badge__hell {
     background-color: #ff00ff;
     box-shadow: 0 0 5px 1px #ff00ff;
-    animation: hell-anim 6s infinite
+    /* animation: hell-anim 6s infinite */
 }
 
 

@@ -1,207 +1,85 @@
-.section.aotw_section {
-    perspective: 2500px;
+.progression_section.section {
+    left: 30%;
+    top: 20px;
+    min-width: 260px;
+    width: 550px;
+    min-height: 40px;
+    /* background: transparent !important; */
+}
+
+.progression_section.section:not(:hover) {
     background: transparent;
-    --border-radius: 5px;
-    --anim-duration: 1.0s;
-    top: 150%;
-    left: 50%;
 }
 
-.aotw_section.section.compact .header-container {
-    opacity: 0;
+.progression_section.section:not(:hover) .header-container {
+    display: none;
+}
+
+.progression_section .header-container::after {
+    display: none;
+}
+
+.progression_container {
+    --height: 400px;
     display: flex;
-    cursor: default;
-
-}
-
-.aotw_section.section:hover .header-container {
-    opacity: 1;
-    display: flex;
-}
-
-.aotw-card {
-    padding: 8px;
-    background-color: var(--main-color);
-    width: 250px;
-    border-radius: var(--border-radius);
-    position: relative;
-    transform-style: preserve-3d;
-
-}
-
-
-.aotw-side {
-    border-radius: var(--border-radius);
-    backface-visibility: hidden;
-    z-index: 1;
-}
-
-.aotw__container {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    background-color: var(--secondary-color);
-}
-
-.aotw-backside {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    transform: rotateY(180deg);
-}
-
-.aotw-backside::after {
-    content: "";
-    position: absolute;
-    transform: translate(-50%, -50%);
-    background-image: url(../assets/img/ra-logo.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    top: 50%;
-    left: 50%;
-    width: 80%;
-    height: 100%;
-}
-
-.aotw-backside::before {
-    content: "";
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    aspect-ratio: 1;
-    background: linear-gradient(to bottom right, var(--blue-color) 50%, var(--yellow-color) 50%);
-    filter: blur(26px);
-    border-radius: 50%;
-}
-
-.show-aotw .aotw-card {
-    transform: rotateY(180deg);
-    opacity: 1;
-    animation: show-aotw-anim-rotate var(--anim-duration) forwards linear;
-    animation-delay: calc(var(--anim-duration));
-}
-
-@keyframes show-aotw-anim-rotate {
-    from {
-        transform: rotateY(180deg);
-    }
-
-    to {
-        transform: rotateY(360deg);
-    }
-}
-
-.show-aotw {
-    transform: translate(-50%, -50%);
-    animation: show-aotw-anim-fade calc(var(--anim-duration) / 2) forwards linear;
-}
-
-@keyframes show-aotw-anim-fade {
-    from {
-        scale: 1;
-        left: 50%;
-        top: 150%;
-    }
-
-    to {
-        scale: 1;
-        left: 50%;
-        top: 50%;
-    }
-}
-
-.hide-aotw {
-    animation: hide-aotw-anim-fade 1s forwards linear !important;
-}
-
-@keyframes hide-aotw-anim-fade {
-    from {
-        scale: 1;
-        left: 50%;
-        top: 50%;
-    }
-
-    to {
-        left: 50%;
-        top: 150%;
-    }
-}
-
-
-
-.aotw_descriptions {
-    flex-shrink: 0;
-    width: 100%;
-    bottom: 0;
-    padding: 2px 0;
-    display: flex;
-    transform: translateY(00%);
     flex-direction: row;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.horizon_list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
-    background-color: rgba(0, 0, 0, 0.51);
-    color: white;
-    gap: 5px;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    flex-shrink: 1;
+    min-width: 250px;
+    min-height: calc(30px + var(--height));
 }
 
-.earned.aotw_section .marker {
-    visibility: visible;
-    opacity: 1;
-    animation: aotw-glass-animation 30s ease-out infinite;
-    animation-delay: 2s;
+.horizon_list:empty {
+    display: none;
 }
 
-@keyframes aotw-glass-animation {
-    0% {
-        background-position: 100% 100%;
-    }
-
-    20% {
-        background-position: -20% 0%;
-    }
-
-    100% {
-        background-position: -20% 0%;
-    }
+.horizon-list_item {
+    position: relative;
+    margin-bottom: calc(10px - var(--height));
+    flex-basis: auto;
+    box-shadow: 1px -1px 5px 2px rgba(0, 0, 0, 0.404);
 }
 
-.earned.aotw_section .progression_achiv-name {
-    animation: aotw-animate-title 8s linear forwards infinite;
+
+.progression-achiv {
+    display: none;
+    position: relative;
+    padding: 8px;
+    /* background: linear-gradient(to right bottom, var(--secondary-color), var(--main-color), var(--secondary-color)); */
+    background-color: var(--secondary-color);
+    width: 250px;
+    height: var(--height);
+    display: none;
+
+    border-radius: 10px;
+    overflow: hidden;
+    transition: .2s;
+    /* z-index: 1; */
+    transition: .2s;
 }
 
-@keyframes aotw-animate-title {
-    0% {
-        background-position: 0%;
-    }
 
-    100% {
-        background-position: 400%;
-    }
+.not-earned .progression-achiv:active {
+    transform: translate(-80%, 10%) rotateZ(-20deg);
 }
 
-.hardcore.aotw_section .aotw__container::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-image: url("../assets/img/sparkles.gif");
-    background-position: center;
-    background-size: 200%;
-    mix-blend-mode: color-dodge;
-    border-radius: var(--border-radius);
+.earned .progression-achiv:active {
+    transform: translate(80%, 10%) rotateZ(20deg);
 }
 
-/**---OLD PROGRESSION--------------*/
+.horizon_list li:nth-last-child(-n+3) {
+    display: grid;
+}
+
 .progression-achiv_container {
     /* border: 2px solid black; */
     display: flex;
