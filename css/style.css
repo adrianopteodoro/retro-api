@@ -18,6 +18,9 @@
 @import url(./stats.css);
 @import url(./aotw.css);
 @import url(./statusV2.css);
+@import url(./achievemas.css);
+@import url(./fs-alerts.css);
+@import url(./recap2024.css);
 
 
 /* @import url('../assets/fonts/bucky_ohare_nes.ttf'); */
@@ -61,6 +64,7 @@ input[type="radio"] {
 
 img {
   image-rendering: pixelated;
+  pointer-events: none;
 }
 
 :root {
@@ -74,7 +78,9 @@ img {
   --shadow-color: #000000;
   --yellow-color: #c39c30;
   --blue-color: #3663d8;
-
+  --orange-gradient: linear-gradient(to right,
+      #ee0979,
+      #ff6a00);
   --border-radius: 5px;
   --box-shadows: 1px 1px 0 var(--shadow-color), 2px 2px 0 var(--shadow-color),
     3px 3px 0 var(--shadow-color), 4px 4px 0 var(--shadow-color);
@@ -83,6 +89,7 @@ img {
 }
 
 body {
+  position: fixed;
   background-color: black;
   color: var(--font-color);
   overflow: hidden;

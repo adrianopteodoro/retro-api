@@ -18,28 +18,110 @@
   <div class="loading-section" id="loading-section">
   </div>
   <div class="background" id="background-animation">
+    <ul class="lightrope">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
     <div id='background-star'></div>
     <div id='background-star2'></div>
     <div id='background-star3'></div>
   </div>
-  <div class="wrapper"><section class="game-card_section section " id="game_section">
+  <div class="wrapper"><section class="game-card_section section" id="game_section">
+  <div class="hidden-header-buttons">
+    <button class="header-button header-icon playlist-icon show-sets__button" data-title="show games set"
+      onclick="ui.gameCard.toggleGamesSetVisibility()"></button>
 
+    <button class="header-button header-icon tweak-button tweak-icon" data-title="config"
+      onclick="ui.settings.openSettings(ui.gameCard.contextMenuItems)">
+    </button>
+    <button class="header-button header-icon close-icon" data-title="close" onclick="ui.gameCard.close()">
+
+    </button>
+  </div>
   <div class="game-card_container content-container">
-
     <div class="game-card_image-container">
-      <div class="game-card__icons-container">
-      </div>
-      <img id="game-card-image" class="game-card_image" src="" onerror="this.src='./assets/img/missable.svg';" alt=" ">
+      <div class="game-card__icons-container"></div>
+      <img id="game-card-image" class="game-card_image" src="" onerror="this.src='./assets/img/missable.svg';"
+        alt=" " />
     </div>
     <div class="hor-line-decorate"></div>
-    <h2 class="game-card__title-container"><a id="game-card-header" href="#" target="_blank"> Some Game Name</a></h2>
+    <h2 class="game-card__title-container">
+      <a id="game-card-header" href="#" target="_blank"> </a>
+    </h2>
     <div class="game-card__info game-card__genres-container"></div>
     <div class="game-card-description">
+
     </div>
   </div>
   <div class="game-card__back-side">
-    <div class="game-info__progression">
-      <ul class="game-info__progression-list">
+    <div class="game-info__set">
+      <div class="games-set__header-container header-container">
+        <h2 class="game-info__set-header">Games Set</h2>
+        <button class="header-button header-icon close-icon"
+          onclick="ui.gameCard.toggleGamesSetVisibility(false)"></button>
+      </div>
+
+      <ul class="game-info__set-list flex-main-list">
+        <li class="game-info__set-item main-column-item right-bg-icon completed">
+
+          <img class="awards__game-preview" src="https://media.retroachievements.org/Images/084165.png" alt=" ">
+          <h3 class="game-title">~Homebrew~ ShmupSpeed</h3>
+          <p class="awards__game-description">NES/Famicom</p>
+          <p class="awards__game-description">26.11.2024, 18:24</p>
+
+        </li>
+        <li class="game-info__set-item main-column-item right-bg-icon mastered"><img class="awards__game-preview"
+            src="https://media.retroachievements.org/Images/084165.png" alt=" ">
+          <h3 class="game-title">~Homebrew~ ShmupSpeed</h3>
+          <p class="awards__game-description">NES/Famicom</p>
+          <p class="awards__game-description">26.11.2024, 18:24</p>
+        </li>
+        <li class="game-info__set-item main-column-item right-bg-icon beaten"><img class="awards__game-preview"
+            src="https://media.retroachievements.org/Images/084165.png" alt=" ">
+          <h3 class="game-title">~Homebrew~ ShmupSpeed</h3>
+          <p class="awards__game-description">NES/Famicom</p>
+          <p class="awards__game-description">26.11.2024, 18:24</p>
+        </li>
       </ul>
     </div>
   </div>
@@ -93,11 +175,17 @@
 
     <div class="setting-radio-group">
         <button class="side-panel_login login-icon" onclick="window.location.href = './login'" data-title="login page">
-            <img id="side-panel-user-image" src="" onerror="this.src='./assets/img/account.svg';" alt=""></b>
+            <img id="side-panel-user-image" src="" onerror="this.src='./assets/img/account.svg';" alt="">
+        </button>
+
     </div>
     <div class="buttons-block_container">
         <div class="buttons-block_widgets">
-
+            <div class="setting-radio-group">
+                <button class="side-panel_input side-panel_text-icon" data-title="2024 statistics"
+                    onclick="ui.recap.open()">24
+                </button>
+            </div>
             <div class="setting-radio-group">
                 <input type="checkbox" onchange="ui.statusPanel.VISIBLE = this.checked" name="open-status-button"
                     id="open-status-button">
@@ -260,15 +348,14 @@
         </div>
 
         <button class="header-button header-icon close-icon" onclick="ui.awards.close()">
-
         </button>
     </div>
     <ul class="awards-content_container content-container">
     </ul>
     <div class="resizer" id="awards-resizer"></div>
 </section><section id="update-section" class="status__section  section">
-  <div class="status__container " id="update-text-block">
-    <div class="status__header-buttons">
+  <div class="status__container">
+    <div class="status__header-buttons hidden-header-buttons">
       <a id="status-game-guide" class="header-button  header-icon tweak-button guide-icon " target="_blank" href="">
       </a>
       <button class="header-button header-icon tweak-button tweak-icon"
@@ -276,61 +363,72 @@
       </button>
     </div>
 
-    <div class="status__user-status card-3d">
+    <div class="status__user-status status__front-side card-3d">
       <div class="status__preview-container">
         <img class="status__game-preview" id="game-preview" src="./assets/img/icon.png" alt=" " />
-        <p class="status__retro-ratio">2.3</p>
+        <p class="status__retro-ratio"></p>
         <button id="watching-button" class="status__watch-button checked"
           data-title="start/stop autoupdate achievements progression"></button>
       </div>
-      </button>
-      <div class="status__text-block status__main-information">
-        <div class="status__game-title-container">
-          <a id="game-title" target="_blank" class="status__text status__game-title" href="">Game tittle</a>
-        </div>
-        <div class="status__game-info">
-          <p id="game-platform" class="status__game-platform status__text">Console</p>
-          <div id="rich-presence" class="status__text rich-presence_text">Waiting...</div>
-        </div>
+      <div class="status__main-information">
+        <p class="status__title-container" id="game-title">
+          <a target="_blank" class="status__game-title" href="">Game tittle</a>
+        </p>
+        <p id="game-platform" class="status__description-text"></p>
+        <div id="rich-presence" class="rich-presence_text">Waiting...</div>
 
-        <div class="status__progres" id="status_progression">
-          <div class="status__progres-description">Description</div>
-          <div class="status__progres-container">
-            <div class="progres-step checked">
-              <div class="progres-point"></div>
-            </div>
-            <div class="progres-step progres-step__win">
-              <div class="progres-point progres-point__win"></div>
-            </div>
+        <div class="status__footer-container">
+          <div class="status__progression-container">
           </div>
         </div>
+
 
         <div id="magic-line" class="magic-line__container">
 
         </div>
       </div>
+      <div class="status__sideblock-container">
+        <div class="status__big-text" id="status-progress-text">01:12:78</div>
+        <div class="status__sideblock-icons" id="status__sideblock-icons">
+          <p class="signed-icon auto-font-size" data-title="cheevos count"><i
+              class="description-icon achievements-icon  auto-font-size"></i>0
+          </p>
+
+          <p class="signed-icon auto-font-size" data-title="total points"><i
+              class="description-icon points-icon  auto-font-size"></i>0
+          </p>
+          <p class="signed-icon auto-font-size" data-title="true ratio">
+            <i class="description-icon rarity-icon  auto-font-size"></i>0
+          </p>
+          <p class="signed-icon auto-font-size" data-title="total retropoints"><i
+              class="description-icon retropoints-icon  auto-font-size"></i>0
+          </p>
+
+        </div>
+      </div>
+
       <div class="status__background"></div>
       <!-- <div class="status__progress-bar" id="status-progress-bar"></div>
       <div class="status__progress-bar_delta-values hidden" id="status_progress-bar-delta"></div> -->
 
-      <div class="status__big-text" id="status-progress-text"></div>
+
 
     </div>
-    <div class="status__back-side card-3d hardcore">
+    <div class="status__back-side card-3d">
       <div class="status__preview-container">
         <img class="status__game-preview" id="update_achiv-preview"
           src="https://media.retroachievements.org/Badge/55561.png" alt=" ">
       </div>
       <div class="status__text-block show-difficult">
-        <div class="status__achiv-header">
-          <a id="update_achiv-title" target="_blank" class="status__text" href="">Kawaiivania
-            <p class="badge difficult-badge__easy">easy</p>
-          </a>
+        <div class="status__alert-header">
+          <p id="update_achiv-title" target="_blank" class="status__alert-title" href="">Kawaiivania
+          </p>
         </div>
-        <p id="update_achiv-description" class="status__text status__progres-description">Reach the end of Stage 5
+        <p id="update_achiv-description" class="status__alert-description">Reach the end of Stage 5
           without
           using charged attacks</p>
-        <div id="update_achiv-earned-points" class="status__text status__achiv-points">
+        <div id="update_achiv-earned-points" class="status__text 
+        status__alert-points">
           <p class="badge difficult-badge__pro">+5HP </p>
           <p class="badge difficult-badge__pro">+5RP </p>
           <p class="badge difficult-badge__pro">TOP58%</p>
@@ -563,6 +661,14 @@
     </ul>
     <div class="resizer" id="stats-resizer"></div>
 </section><section class="section rp__section" id="rp__section">
+    <div class="status__header-buttons hidden-header-buttons">
+        <!-- <a id="rp-game-guide" class="header-button  header-icon tweak-button guide-icon " target="_blank" href="">
+        </a> -->
+        <button class="header-button header-icon tweak-button tweak-icon"
+            onclick="ui.settings.openSettings(ui.status.contextMenuItems)">
+        </button>
+    </div>
+    <div class="rp__indicator"></div>
     <div class="rp__game-container">
         <div class="rp__preview-container">
             <img class="rp__game-image" src="https://media.retroachievements.org/Images/065134.png" alt="" srcset="">
@@ -579,6 +685,22 @@
             </div>
 
         </div>
+    </div>
+    <div class="rp__rich-presence">
+    </div>
+    <div class="rp__alert-container">
+        <div class="rp__preview-container">
+            <img class="rp__game-image rp__alert-preview" src="https://media.retroachievements.org/Images/065134.png"
+                alt="" srcset="">
+        </div>
+        <div class="rp__alert-info-grid">
+            <h3 class="rp__alert-title">Alert title</h3>
+            <div class="rp__alert-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur,
+                quod!
+            </div>
+            <div class="rp__alert-badges"></div>
+        </div>
+
     </div>
     <div class="rp__progression-container">
         <h3 class="rp__progression-target">Beet the game</h3>
@@ -634,6 +756,7 @@
     </div>
     <div class="rp__ticker">
     </div>
+
     <ul class="rp__target-cheevos flex-main-list ">
         <li class="target-achiv">
             <div class="target-cheevo__preview-container">
@@ -649,6 +772,55 @@
 
     </ul>
     <div class="resizer"></div>
+</section><section class="achievemas__section" id="achievemas__section">
+    <div class="achievemas-header__container">
+        <div class="achievemas__header">
+            <span>R</span><span>e</span><span>t</span><span>r</span><span>o</span>
+            <span>A</span><span>c</span><span>h</span><span>i</span><span>e</span><span>v</span><span>e</span><span>m</span><span>a</span><span>s</span>
+            <span>2</span><span>0</span><span>2</span><span>4</span>
+            <!-- <span>E</span><span>v</span><span>e</span><span>n</span><span>t</span> -->
+        </div>
+        <div class="get-awards_button header-button header-icon update-icon achievemas__header-icon" id="awards-button"
+            title="force reload" onclick="ui.achievemasEvent.update()">
+
+        </div>
+        <button class="header-button header-icon close-icon achievemas__header-icon"
+            onclick="ui.achievemasEvent.close()">
+
+    </div>
+
+    <ul class="achievemas__games-list">
+        <li class="achievemas-game__container mastered">
+            <div class="achievemas-game__preview-container">
+                <img src="https://media.retroachievements.org/Images/078146.png" alt=""
+                    class="achievemas-game__preview">
+            </div>
+            <div class="achievemas-game__description-container">
+                <div class="achievemas-game__title">Santa Claus Junior</div>
+                <div class="achievemas-game__description">Game Boy Color</div>
+                <div class="achievemas-game__description">2001</div>
+            </div>
+
+        </li>
+        <li class="achievemas-game__container beaten">
+            <div class="achievemas-game__preview-container">
+                <img src="https://media.retroachievements.org/Images/078146.png" alt=""
+                    class="achievemas-game__preview">
+            </div>
+            <div class="achievemas-game__description-container">
+                <div class="achievemas-game__title">Santa Claus Junior</div>
+                <div class="achievemas-game__description">Game Boy Color</div>
+                <div class="achievemas-game__description">2001</div>
+            </div>
+
+        </li>
+
+    </ul>
+    <div class="achievemas-points__container">
+        <div class="achievemas-points__header">
+            Earn 15 points to get the reward!
+        </div>
+    </div>
 </section>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>

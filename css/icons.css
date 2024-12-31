@@ -1,15 +1,18 @@
 /* *-----------------BADGES----------- */
 .badge {
+    --badge-font-color: black;
+    --badge-bg-color: lime;
     display: inline-block;
     font-size: 0.8em;
-    color: black;
+    color: var(--badge-font-color);
     font-weight: 700;
     text-transform: uppercase;
     text-wrap: nowrap;
-    padding: 0px 0.25rem;
+    padding: 0 0.25rem;
     border-radius: 3px;
-    margin-right: 0.25rem;
-    background-color: lime;
+    /* margin-right: 0.25rem; */
+    background-color: var(--badge-bg-color);
+    ;
 }
 
 .badge-button {
@@ -18,9 +21,17 @@
 }
 
 .badge-button:hover {
-    background-color: var(--font-color);
-    color: var(--main-color);
+    background-color: var(--badge-font-color);
+    color: var(--badge-bg-color);
 
+}
+
+.badge-centered {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    line-height: 1;
+    padding: 0.15rem 0.25rem;
 }
 
 .badge.badge-bold {
@@ -29,20 +40,28 @@
 }
 
 .badge_green {
-    background-color: lime;
+    --badge-bg-color: lime;
 }
 
 .badge_gold {
-    background-color: goldenrod;
+    --badge-bg-color: goldenrod;
+    --font-color: var(--badge-font-color);
+}
+
+.badge_black {
+    font-weight: normal;
+    --badge-bg-color: black;
+    --badge-font-color: white;
+    padding: 1px 0.25rem;
 }
 
 .badge_cheevo-genre {
-    background-color: crimson;
+    --badge-bg-color: : crimson;
 }
 
 .highlight-badge {
-    background-color: var(--font-color);
-    color: var(--main-color);
+    --badge-bg-color: greenyellow;
+    --badge-font-color: black;
     font-size: inherit;
     font-weight: inherit;
     text-transform: none;
@@ -54,46 +73,48 @@
     display: none;
 }
 
-.game-title_genre {
-    background-color: darkslategray;
-    color: white;
+.game-title_genre,
+.badge_grey {
+    --badge-bg-color: darkslategray;
+    --badge-font-color: white;
 }
 
 .game-title_hack {
-    background-color: crimson;
+    --badge-bg-color: crimson;
 }
 
 .game-title_unlicensed {
-    background-color: gold;
+    --badge-bg-color: gold;
 }
 
 .game-title_homebrew {
-    background-color: cyan;
+    --badge-bg-color: cyan;
 }
 
 .game-title_prototype {
-    background-color: white;
+    --badge-bg-color: white;
 }
 
 .game-title_demo {
-    background-color: chocolate;
+    --badge-bg-color: chocolate;
 }
 
 .game-title_mastered {
-    background-color: gold;
+    --badge-bg-color: gold;
 }
 
 .game-title_completed {
-    background-color: rgba(255, 217, 0, 0.473);
+    --badge-bg-color: rgba(255, 217, 0, 0.473);
 }
 
 .game-title_beaten-hardcore {
-    background-color: grey;
+    --badge-bg-color: grey;
 }
 
 .game-title_beaten-softcore {
-    background-color: rgba(128, 128, 128, 0.281);
+    --badge-bg-color: rgba(128, 128, 128, 0.281);
 }
+
 
 
 
@@ -105,6 +126,7 @@
     height: 1em;
     aspect-ratio: 1;
     background-color: var(--font-color);
+    /* background-color: var(--badge-font-color); */
     mask-size: contain;
     mask-position: center;
     mask-repeat: no-repeat;
@@ -114,7 +136,8 @@
 .signed-icon {
     display: flex;
     align-items: center;
-    column-gap: 0.25rem
+    column-gap: 0.25rem;
+    font-size: inherit;
 }
 
 .icon-button,
@@ -122,7 +145,7 @@
     display: grid;
     place-items: center;
     padding: 2px;
-    background-color: transparent;
+    /* background-color: transparent; */
 }
 
 .game-description_link {
@@ -153,6 +176,10 @@
     aspect-ratio: 1;
     align-self: center;
     justify-self: center;
+}
+
+.delete-icon {
+    mask-image: url(../assets/img/delete.svg);
 }
 
 .q-icon {
@@ -210,7 +237,7 @@
     mask-image: url(../assets/img/rarity-4.svg);
 }
 
-.checked>.favourite_icon {
+.checked.favourite_icon {
     opacity: 0.5;
     mask-image: url(../assets/img/favorite.svg);
 }
@@ -309,6 +336,10 @@
     mask-image: url(../assets/img/check.svg);
 }
 
+.playlist-icon {
+    mask-image: url(../assets/img/playlist-play.svg);
+}
+
 .close-icon {
     mask-image: url(../assets/img/close.svg);
 }
@@ -320,6 +351,7 @@
     mask-size: contain;
     mask-position: center;
     mask-repeat: no-repeat;
+    flex-shrink: 0;
 }
 
 .target-icon {
@@ -377,7 +409,6 @@
 .chat-icon {
     mask-image: url(../assets/img/chat.svg)
 }
-
 
 /** Difficult badges */
 

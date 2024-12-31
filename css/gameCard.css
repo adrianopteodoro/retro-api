@@ -59,9 +59,10 @@
   bottom: 0;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 0.25rem 1rem;
+  padding: 0.25rem 0;
+  font-size: 1.3rem;
   /* background: rgba(0, 0, 0, 0.5); */
   z-index: 1;
 }
@@ -248,4 +249,95 @@
 .game-card-info:first-child {
   border-top: none;
   z-index: 2;
+}
+
+
+.game-card__back-side {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  max-height: 100%;
+  height: fit-content;
+  background-color: var(--main-color);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 200ms;
+
+}
+
+.game-card__back-side.show {
+  opacity: 1;
+  z-index: 11;
+}
+
+.show-sets__button {
+  background: var(--orange-gradient);
+}
+
+.show-sets__button:hover {
+  scale: 1.01;
+}
+
+.show-sets__button:active {
+  scale: 0.99;
+}
+
+.games-set__header-container.header-container {
+  z-index: 1;
+}
+
+.game-info__set-header {
+  font-size: 1.3rem;
+  text-align: center;
+  padding: 0.25rem;
+}
+
+.game-info__set {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-info__set-list {
+  padding-top: 1rem;
+  flex: 1;
+  overflow: scroll;
+}
+
+.game-info__set-item {
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: auto 1fr;
+  transition: 0.2s;
+  background-color: var(--secondary-color);
+
+}
+
+.game-info__set-item.focus {
+  background: var(--orange-gradient);
+  color: black;
+}
+
+.game-info__set-item.mastered::after {
+  --mark-color: gold;
+  --icon-url: url(../assets/img/trophy.svg);
+}
+
+.game-info__set-item.beaten-hardcore::after {
+  --mark-color: gold;
+  --icon-url: url(../assets/img/medal.svg);
+}
+
+.game-info__set-item.completed::after {
+  --mark-color: silver;
+  --icon-url: url(../assets/img/trophy.svg);
+}
+
+.game-info__set-item.beaten-softcore::after {
+  --mark-color: silver;
+  --icon-url: url(../assets/img/medal.svg);
 }
