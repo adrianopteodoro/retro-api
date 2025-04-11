@@ -2,17 +2,19 @@
 .badge {
     --badge-font-color: black;
     --badge-bg-color: lime;
-    display: inline-block;
-    font-size: 0.8em;
-    color: var(--badge-font-color);
-    font-weight: 700;
-    text-transform: uppercase;
-    text-wrap: nowrap;
+    display: inline;
     padding: 0 0.25rem;
     border-radius: 3px;
-    /* margin-right: 0.25rem; */
     background-color: var(--badge-bg-color);
-    ;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: 700;
+    color: var(--badge-font-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .badge-button {
@@ -23,7 +25,11 @@
 .badge-button:hover {
     background-color: var(--badge-font-color);
     color: var(--badge-bg-color);
+}
 
+.badge_transparent.badge-button:hover {
+    background-color: var(--badge-font-color);
+    color: var(--main-color);
 }
 
 .badge-centered {
@@ -36,7 +42,6 @@
 
 .badge.badge-bold {
     font-weight: 700;
-    font-size: 0.9em;
 }
 
 .badge_green {
@@ -47,6 +52,13 @@
     --badge-bg-color: goldenrod;
     --font-color: var(--badge-font-color);
 }
+
+.badge_transparent {
+    --badge-bg-color: transparent;
+    --badge-font-color: var(--font-color);
+    border: 1px solid var(--badge-font-color);
+}
+
 
 .badge_black {
     font-weight: normal;
@@ -120,6 +132,12 @@
 
 
 /** ICONS  */
+.svg-icon {
+    fill: var(--font-color);
+    height: 1em;
+    width: 1em;
+}
+
 .description-icon {
     display: inline-block;
     position: relative;
@@ -133,11 +151,21 @@
     transition: background-color .2s;
 }
 
+.cheevo-genre__icon {
+    font-size: 1.2em;
+    margin-left: 0.15rem;
+    text-align: center;
+}
+
 .signed-icon {
     display: flex;
     align-items: center;
     column-gap: 0.25rem;
     font-size: inherit;
+    flex-wrap: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .icon-button,
@@ -146,6 +174,18 @@
     place-items: center;
     padding: 2px;
     /* background-color: transparent; */
+}
+
+.side-panel__icon {
+    display: inline-block;
+    position: relative;
+    height: var(--button-height);
+    aspect-ratio: 1;
+    background-color: var(--font-color);
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-image: var(--icon-source);
 }
 
 .game-description_link {
@@ -215,6 +255,10 @@
 .progression {
     scale: 1.05;
     mask-image: url(../assets/img/progression.svg);
+}
+
+.game-info-icon {
+    mask-image: url(../assets/img/article.svg);
 }
 
 .rarity-icon {
@@ -324,6 +368,10 @@
     mask-image: url(../assets/img/link2.svg);
 }
 
+.link-icon {
+    mask-image: url(../assets/img/links.svg);
+}
+
 .download-icon {
     mask-image: url(../assets/img/download.svg);
 }
@@ -378,6 +426,10 @@
     mask-image: url(../assets/img/stats.svg)
 }
 
+.status-icon {
+    mask-image: url(../assets/img/cardio.svg)
+}
+
 .games-icon {
     mask-image: url(../assets/img/gamepad.svg)
 }
@@ -410,14 +462,48 @@
     mask-image: url(../assets/img/chat.svg)
 }
 
-/** Difficult badges */
+.edit-icon {
+    mask-image: url(../assets/img/edit.svg)
+}
 
-.difficult-badge__hell {
-    background-color: #ff00ff;
-    box-shadow: 0 0 5px 1px #ff00ff;
+.discord-icon {
+    mask-image: url(../assets/img/discord.svg)
+}
+
+.game-stats {
+    mask-image: url(../assets/img/game-stats.svg);
+}
+
+/** Difficult badges */
+.difficult-badge__11 {
+    position: relative;
+    background-color: #000;
+    box-shadow: 0 0 3px 1px #000;
+    color: #ff00ff;
+    padding: 0 0.5rem;
     /* animation: hell-anim 6s infinite */
 }
 
+/* .difficult-badge__11::before {
+    content: "[";
+}
+
+.difficult-badge__11::after {
+    content: "]";
+} */
+
+.difficult-badge__hell,
+.difficult-badge__10 {
+    background-color: #ff00ff;
+    box-shadow: 0 0 3px 1px #ff00ff;
+    /* animation: hell-anim 6s infinite */
+}
+
+.difficult-badge__9 {
+    background-color: #ff00ff;
+    box-shadow: 0 0 3px 1px #ff00ff;
+    /* animation: hell-anim 6s infinite */
+}
 
 @keyframes hell-anim {
     0% {
@@ -436,22 +522,70 @@
     }
 }
 
-.difficult-badge__insane {
-    background-color: #800080;
+.difficult-badge__insane,
+.difficult-badge__8 {
+    background-color: #f9249c;
+    box-shadow: 0 0 3px 1px #f9249c;
 }
 
-.difficult-badge__pro {
-    background-color: orange;
-}
-
-.difficult-badge__expert {
+.difficult-badge__expert,
+.difficult-badge__7 {
     background-color: crimson;
 }
 
-.difficult-badge__standard {
+.difficult-badge__pro,
+.difficult-badge__6 {
+    background-color: orange;
+}
+
+
+
+.difficult-badge__standard,
+.difficult-badge__5 {
+    background-color: greenyellow;
+}
+
+.difficult-badge__easy,
+.difficult-badge__4 {
     background-color: lime;
 }
 
-.difficult-badge__easy {
-    background-color: greenyellow;
+.version-badge::before {
+    position: absolute;
+    bottom: 0;
+    right: 0.25rem;
+    font-size: 0.85em;
+    color: white;
+    background-color: black;
+    padding: 0 0.5rem;
+    border-radius: 0.25em;
+
+}
+
+.version-badge__v1::before {
+    content: "v1";
+}
+
+.version-badge__v2::before {
+    content: "v2";
+}
+
+.watching:not(.offline) .time__blinked-dots {
+    animation-delay: 1s;
+    animation: blink-time-dots 5s infinite;
+}
+
+@keyframes blink-time-dots {
+    25% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
 }
