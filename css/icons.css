@@ -57,6 +57,13 @@
     --badge-bg-color: var(--selection-color);
     --badge-font-color: var(--accent-color);
     border: 1px solid var(--accent-color);
+    /* test */
+    font-weight: normal;
+    font-size: 1rem;
+    border: 1px solid gray;
+    background: #4d4d4d5e;
+    color: var(--font-color);
+    font-size: 1rem;
 }
 
 
@@ -152,12 +159,17 @@
 }
 
 .image-icon {
-    height: 1rem;
+    height: 1em;
     display: inline-block;
+
+}
+
+.image-icon.console-icon {
+    margin-bottom: -0.2em;
 }
 
 .cheevo-genre__icon {
-    font-size: 1.2em;
+    font-size: inherit;
     margin-left: 0.15rem;
     text-align: center;
 }
@@ -391,6 +403,14 @@
 
 .playlist-icon {
     mask-image: url(../assets/img/playlist-play.svg);
+}
+
+.sort-icon {
+    mask-image: url(../assets/img/sort.svg);
+}
+
+.filter-icon {
+    mask-image: url(../assets/img/filter.svg);
 }
 
 .close-icon {

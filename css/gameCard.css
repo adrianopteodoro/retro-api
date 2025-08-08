@@ -119,6 +119,9 @@
   padding: 0;
 }
 
+.game-card__genres-container.hidden {
+  display: none;
+}
 
 .game-card__info {
   font-size: 1.1rem;
@@ -188,6 +191,10 @@
   image-rendering: auto;
   /* border-radius: var(--border-radius); */
   pointer-events: none;
+}
+
+.left-margin-preview .game-card_image {
+  object-position: 80% 50%;
 }
 
 .hor-line-decorate {
